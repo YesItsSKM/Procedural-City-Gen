@@ -9,14 +9,30 @@ public class LSystemsGenerator : MonoBehaviour
     public Rules[] rules;
     public string rootSentences;
 
-    [Range(0,4)]
+    [Range(0, 4)]
     public int iterationLimit = 1;
+
+    /// <summary>
+    /// Ignore the randomnise
+    /// </summary>
+    public bool randomIgnoreRuleModifier = true;
+
+    /// <summary>
+    /// Probability to ignoring the random rules is 30 percentage
+    /// </summary>
+    [Range(0, 1)] public float chanceToIgnoreRules = 0.3f;
+
 
     private void Start()
     {
         Debug.Log(GenerateSentence());
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="word"></param>
+    /// <returns></returns>
     public string GenerateSentence(string word= null)
     {
         if(word==null)
@@ -27,6 +43,12 @@ public class LSystemsGenerator : MonoBehaviour
         return GrowRecursive(word);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="word"></param>
+    /// <param name="iterationIndex"></param>
+    /// <returns></returns>
     private string GrowRecursive(string word,int iterationIndex=0)
     {
         if(iterationIndex>=iterationLimit)
@@ -45,6 +67,12 @@ public class LSystemsGenerator : MonoBehaviour
         return newWord.ToString();
     }
 
+    /// <summary>
+    /// Generates the string 
+    /// </summary>
+    /// <param name="newWord">Everything adds upto this word </param>
+    /// <param name="c">each character in the rule</param>
+    /// <param name="iterationIndex">number of iterations </param>
     private void ProcessRulesRecursivelly(StringBuilder newWord, char c, int iterationIndex)
     {
         foreach (var rule in rules)
