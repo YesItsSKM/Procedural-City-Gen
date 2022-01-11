@@ -50,22 +50,82 @@ public class SimpleVisualizer : MonoBehaviour
 
             switch (encoding)
             {
+                case EncodingLetters.unknown:
+                    break;
+
                 case EncodingLetters.save:
+                    savePoints.Push(new AgentParameters
+                    {
+                        position = currentPosition,
+                        direction=direction,
+                        length=Length
+                    });
                      break;
+
                 case EncodingLetters.load:
+                    if (savePoints.Count>0)
+                    {
+                        var agentParameter = savePoints.Pop();
+                        currentPosition = agentParameter.position;
+                        direction = agentParameter.direction;
+                        Length = agentParameter.length;
+                    }
+                    else
+                    {
+                        throw new System.Exception("Donot have save point in the stack");
+                    }
                     break;
+
                 case EncodingLetters.draw:
+                    tempPosition = currentPosition;
+                    currentPosition += direction * length;
+                    DrawLine(tempPosition, currentPosition, Color.red);
+                    Length -= 2;
+                    positions.Add(currentPosition);
                     break;
+
                 case EncodingLetters.turnRight:
+                    direction = Quaternion.AngleAxis(angle, Vector3.up) * direction;
                     break;
+
                 case EncodingLetters.turnLeft:
+                    direction = Quaternion.AngleAxis(-angle, Vector3.up) * direction;
                     break;
+
                 default:
                     break;
             }
         }
+
+        foreach (var position in positions)
+        {
+            Instantiate(prefab, position, Quaternion.identity);
+        }
     }
 
+    /// <summary>
+    /// This function drawline with help of linerenderer
+    /// </summary>
+    /// <param name="start">Starting position of the line</param>
+    /// <param name="end">end position of the line</param>
+    /// <param name="color">red color is used as a default</param>
+    private void DrawLine(Vector3 start, Vector3 end, Color color)
+    {
+        GameObject line = new GameObject("line");
+        line.transform.position = start;
+        var lineRenderer =line.AddComponent<LineRenderer>();
+        lineRenderer.material = lineMaterial;
+        lineRenderer.startColor = color;
+        lineRenderer.endColor = color;
+        lineRenderer.startWidth = 0.1f;
+        lineRenderer.endWidth = 0.1f;
+        lineRenderer.SetPosition(0, start);
+        lineRenderer.SetPosition(1, end);
+    }
+
+    /// <summary>
+    /// These are enums which decides function of a string character
+    /// </summary>
     public enum EncodingLetters
     {
         unknown='1',

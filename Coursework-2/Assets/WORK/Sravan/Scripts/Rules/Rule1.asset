@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9af788bad3034a4f8bea8ffce93c4fc, type: 3}
   m_Name: Rule1
   m_EditorClassIdentifier: 
-  letter: A
+  letter: F
   results:
-  - AB
+  - '[+F][-F]'
