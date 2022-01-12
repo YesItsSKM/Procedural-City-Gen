@@ -79,6 +79,13 @@ public class LSystemsGenerator : MonoBehaviour
         {
             if(rule.letter==c.ToString())
             {
+                if (randomIgnoreRuleModifier&& iterationIndex>1)
+                {
+                    if (UnityEngine.Random.value<chanceToIgnoreRules)
+                    {
+                        return;
+                    }
+                }
                 newWord.Append(GrowRecursive(rule.GetResult(), iterationIndex + 1));
             }
         }
