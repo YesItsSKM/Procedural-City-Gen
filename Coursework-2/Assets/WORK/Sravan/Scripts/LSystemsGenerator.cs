@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +8,7 @@ public class LSystemsGenerator : MonoBehaviour
     public Rules[] rules;
     public string rootSentences;
 
-    [Range(0, 4)]
+    [Range(0, 4)] 
     public int iterationLimit = 1;
 
     /// <summary>
@@ -20,8 +19,8 @@ public class LSystemsGenerator : MonoBehaviour
     /// <summary>
     /// Probability to ignoring the random rules is 30 percentage
     /// </summary>
-    [Range(0, 1)] public float chanceToIgnoreRules = 0.3f;
-
+    [Range(0, 1)] 
+    public float chanceToIgnoreRules = 0.3f;
 
     private void Start()
     {
@@ -79,13 +78,15 @@ public class LSystemsGenerator : MonoBehaviour
         {
             if(rule.letter==c.ToString())
             {
-                if (randomIgnoreRuleModifier&& iterationIndex>1)
+                if (randomIgnoreRuleModifier)
                 {
-                    if (UnityEngine.Random.value<chanceToIgnoreRules)
+                    if (Random.value < chanceToIgnoreRules)
                     {
+                        Debug.Log("Rule Ignored");
                         return;
                     }
                 }
+
                 newWord.Append(GrowRecursive(rule.GetResult(), iterationIndex + 1));
             }
         }

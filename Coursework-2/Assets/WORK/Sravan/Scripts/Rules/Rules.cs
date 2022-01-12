@@ -28,7 +28,7 @@ public class Rules : ScriptableObject
     {
         if (randomResult)
         {
-            int randomIndex = Random.Range(0, results.Length);
+            int randomIndex = UnityEngine.Random.Range(0, results.Length);
             return results[randomIndex];
         }
 
