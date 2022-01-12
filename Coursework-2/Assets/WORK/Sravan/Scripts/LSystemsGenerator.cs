@@ -80,7 +80,7 @@ public class LSystemsGenerator : MonoBehaviour
             {
                 if (randomIgnoreRuleModifier)
                 {
-                    if (Random.value < chanceToIgnoreRules)
+                    if (Random.value < chanceToIgnoreRules && iterationIndex > 1)
                     {
                         Debug.Log("Rule Ignored");
                         return;
