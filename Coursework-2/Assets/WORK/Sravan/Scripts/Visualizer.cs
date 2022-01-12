@@ -110,5 +110,7 @@ public class Visualizer : MonoBehaviour
             Instantiate(prefab, position, Quaternion.identity);
         }
         */
+
+        roadHelper.FixRoad();
     }
 }
