@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RoadHelper : MonoBehaviour
@@ -13,6 +14,11 @@ public class RoadHelper : MonoBehaviour
     Dictionary<Vector3Int, GameObject> roadDictionary = new Dictionary<Vector3Int, GameObject>();
 
     HashSet<Vector3Int> fixRoadCandidates = new HashSet<Vector3Int>();
+
+    public List<Vector3Int> GetRoadPositions()
+    {
+        return roadDictionary.Keys.ToList();
+    }
 
     /// <summary>
     /// Placing the prefab instead of the line renderer
