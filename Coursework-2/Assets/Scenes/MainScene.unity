@@ -152,6 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5572b4379a862f408974611aeb8a2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  naturePrefabs:
+  - {fileID: 100000, guid: 232d918e673de694d8a118b6efe0bf6f, type: 3}
+  - {fileID: 100000, guid: 6b4b29e49f76c9f46b7f3594d299d8d9, type: 3}
+  - {fileID: 100000, guid: 011ca9ca00b21594c8a16ee78d6a8c7c, type: 3}
+  randomNaturePlacement: 1
+  randomNaturePlacementThreshold: 0.3
   buildingTypes:
   - prefabs:
     - {fileID: 9099852793625417729, guid: 016983d54f3ab9940ad4865d1667faf8, type: 3}
