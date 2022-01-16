@@ -160,22 +160,22 @@ MonoBehaviour:
   randomNaturePlacementThreshold: 0.3
   buildingTypes:
   - prefabs:
-    - {fileID: 9099852793625417729, guid: 016983d54f3ab9940ad4865d1667faf8, type: 3}
-    sizeRequired: 2
+    - {fileID: 7833666699212256218, guid: e6fb03f49bb6c3c4fbf1127258be8b7f, type: 3}
+    sizeRequired: 1
     quantity: 1
     quantityAlreadyPlaced: 0
   - prefabs:
-    - {fileID: 7811007732050430257, guid: e37023247e539164396166432dfbf353, type: 3}
-    sizeRequired: 2
-    quantity: 10
-    quantityAlreadyPlaced: 0
-  - prefabs:
-    - {fileID: 9099852793625417729, guid: dbcb94ab56ada6048accfa68f2acb33e, type: 3}
+    - {fileID: 6819502138017646086, guid: 8e15fd5119134d64b8d1f489cb58efcd, type: 3}
     sizeRequired: 1
     quantity: 10
     quantityAlreadyPlaced: 0
   - prefabs:
-    - {fileID: 9099852793625417729, guid: 161e492cdacf2dd489b0b6cf5454f2d2, type: 3}
+    - {fileID: 6851956744229233409, guid: d41698d5d94c1c74c9ba2c708c7e7a9a, type: 3}
+    sizeRequired: 1
+    quantity: 10
+    quantityAlreadyPlaced: 0
+  - prefabs:
+    - {fileID: 6851956744229233409, guid: d41698d5d94c1c74c9ba2c708c7e7a9a, type: 3}
     sizeRequired: 1
     quantity: -1
     quantityAlreadyPlaced: 0
