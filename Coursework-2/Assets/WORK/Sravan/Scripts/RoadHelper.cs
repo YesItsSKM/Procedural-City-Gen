@@ -1,3 +1,4 @@
+using SVS;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine;
 public class RoadHelper : MonoBehaviour
 {
     public Action finishedCoroutine;
-    public float animationTime = 0.01f;
+    public float animationTime = 0.001f;
 
     public GameObject roadStraight;
     public GameObject roadCorner;
@@ -47,6 +48,7 @@ public class RoadHelper : MonoBehaviour
             }
 
             var road = Instantiate(roadStraight, position, rotation, transform);
+            road.AddComponent<FallAnimations>();
             roadDictionary.Add(position, road);
 
             if (i==0||i==length-1)

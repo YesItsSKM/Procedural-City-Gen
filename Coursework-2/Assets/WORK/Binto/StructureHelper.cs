@@ -133,6 +133,7 @@ namespace SVS
 			GameObject SpawnPrefab(GameObject prefab, Vector3Int position, Quaternion rotation)
 			{
 				var newStructure = Instantiate(prefab, position, rotation, transform);
+                newStructure.AddComponent<FallAnimations>();			// Adding the animation component
 				return newStructure;
 			}
 
@@ -157,50 +158,9 @@ namespace SVS
 				}
 				return freeSpaces;
 			}
-
-			///down useless
-			/*private bool VerifyIfBuildingFits(
-				int halfSize, 
-				Dictionary<Vector3Int, Direction> freeEstateSpots, 
-				KeyValuePair<Vector3Int, Direction> freeSpot, 
-				ref List<Vector3Int> tempPositionsBlocked)
-			{
-				Vector3Int direction = Vector3Int.zero;
-				if(freeSpot.Value == Direction.Down || freeSpot.Value == Direction.Up)
-				{
-					direction = Vector3Int.right;
-				}
-				else
-				{
-					direction = new Vector3Int(0, 0, 1);
-				}
-				for (int i = 1; i < halfSize; i++)
-				{
-					var pos1 = freeSpot.Key + direction * i;
-					var pos2 = freeSpot.Key - direction * i;
-					if(!freeEstateSpots.ContainsKey(pos1) || !freeEstateSpots.ContainsKey(pos2))
-					{
-						return false;
-					}
-					tempPositionsBlocked.Add(pos1);
-					tempPositionsBlocked.Add(pos2);
-				}
-				return true;
-			}
-
-			*/
-
-			/*private GameObject SpawnPrefab(GameObject prefab, Vector3Int position, Quaternion rotation)
-			{
-				var newStructure = Instantiate(prefab, position, rotation, transform);
-				newStructure.AddComponent<FallTween>();
-				return newStructure;
-			}*/
-			// useless till here
-
-
-
 		}
+
+		// For reseting the map
 			public void Reset()
 			{
 				foreach (var item in structuresDictionary.Values)
