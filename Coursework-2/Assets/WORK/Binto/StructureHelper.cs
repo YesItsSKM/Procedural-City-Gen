@@ -18,13 +18,13 @@ namespace SVS
 
 		public Dictionary<Vector3Int, GameObject> natureDictionary = new Dictionary<Vector3Int, GameObject>();
 
-		//public float animationTime = 0.01f;
+		public float animationTime = 0.001f;
 
 
 
 
 
-		public void PlaceStructuresAroundRoad(List<Vector3Int> roadPositions)
+		public IEnumerator PlaceStructuresAroundRoad(List<Vector3Int> roadPositions)
 		{
 			Dictionary<Vector3Int, Direction> freeEstateSpots = FindFreeSpacesAroundRoad(roadPositions);
 			List<Vector3Int> blockedPositions = new List<Vector3Int>();
@@ -99,9 +99,9 @@ namespace SVS
 							}
 							break;
 						}
-
-
 					}
+
+                    yield return new WaitForSeconds(animationTime);
 				}
 			}
 

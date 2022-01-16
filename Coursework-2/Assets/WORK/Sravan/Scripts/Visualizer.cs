@@ -25,6 +25,8 @@ namespace SVS
         private int length = 8;
         private float angle = 90;
 
+        private bool waitingForTheRoad = false;
+
         public int Length
         {
             get
@@ -43,6 +45,7 @@ namespace SVS
 
         private void Start()
         {
+            roadHelper.finishedCoroutine += () => waitingForTheRoad = false;
             CreateTown();
         }
 
@@ -52,11 +55,11 @@ namespace SVS
             roadHelper.Reset();
             structureHelper.Reset();
             var sequence = LSystemsGenerator.GenerateSentence();
-            VisualizeSequence(sequence);
+            StartCoroutine(VisualizeSequence(sequence));
         }
 
 
-        private void VisualizeSequence(string sequence)
+        private IEnumerator VisualizeSequence(string sequence)
         {
             Stack<AgentParameters> savePoints = new Stack<AgentParameters>();
             var currentPosition = Vector3.zero;
@@ -68,6 +71,11 @@ namespace SVS
 
             foreach (var letter in sequence)
             {
+                if (waitingForTheRoad)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
+
                 EncodingLetters encoding = (EncodingLetters)letter;
 
                 switch (encoding)
@@ -102,7 +110,11 @@ namespace SVS
                         tempPosition = currentPosition;
                         currentPosition += direction * length;
                         //DrawLine(tempPosition, currentPosition, Color.red);
-                        roadHelper.PlaceStreetPosition(tempPosition, Vector3Int.RoundToInt(direction), length);
+                        StartCoroutine(roadHelper.PlaceStreetPosition(tempPosition, Vector3Int.RoundToInt(direction), length));
+
+                        waitingForTheRoad = true;
+                        yield return new WaitForEndOfFrame();
+
                         Length -= 2;
                         positions.Add(currentPosition);
                         break;
@@ -127,8 +139,10 @@ namespace SVS
             }
             */
 
+            yield return new WaitForSeconds(0.1f);
             roadHelper.FixRoad();
-            structureHelper.PlaceStructuresAroundRoad(roadHelper.GetRoadPositions());
+            yield return new WaitForSeconds(0.8f);
+            StartCoroutine(structureHelper.PlaceStructuresAroundRoad(roadHelper.GetRoadPositions()));
         }
     }
 }

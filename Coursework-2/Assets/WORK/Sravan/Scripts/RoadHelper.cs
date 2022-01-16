@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +6,9 @@ using UnityEngine;
 
 public class RoadHelper : MonoBehaviour
 {
+    public Action finishedCoroutine;
+    public float animationTime = 0.01f;
+
     public GameObject roadStraight;
     public GameObject roadCorner;
     public GameObject road3way;
@@ -26,7 +30,7 @@ public class RoadHelper : MonoBehaviour
     /// <param name="startPosition">Start poisition</param>
     /// <param name="direction"> instead of end, it is direction</param>
     /// <param name="length">length of instantiate</param>
-    public void PlaceStreetPosition(Vector3 startPosition, Vector3Int direction, int length)
+    public IEnumerator PlaceStreetPosition(Vector3 startPosition, Vector3Int direction, int length)
     {
         var rotation = Quaternion.identity;
         if (direction.x==0)
@@ -49,7 +53,11 @@ public class RoadHelper : MonoBehaviour
             {
                 fixRoadCandidates.Add(position);
             }
+            
+            yield return new WaitForSeconds(animationTime);
         }
+
+        finishedCoroutine?.Invoke();
     }
 
     public void FixRoad()
