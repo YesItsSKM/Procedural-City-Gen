@@ -15,7 +15,8 @@ namespace SVS
         public GameObject prefab;
         public Material lineMaterial;
         */
-
+        
+        public int roadLength = 8;
 
         public RoadHelper roadHelper;
         public StructureHelper structureHelper;
@@ -42,9 +43,18 @@ namespace SVS
 
         private void Start()
         {
+            CreateTown();
+        }
+
+        public void CreateTown()
+        {
+            length = roadLength;
+            roadHelper.Reset();
+            structureHelper.Reset();
             var sequence = LSystemsGenerator.GenerateSentence();
             VisualizeSequence(sequence);
         }
+
 
         private void VisualizeSequence(string sequence)
         {

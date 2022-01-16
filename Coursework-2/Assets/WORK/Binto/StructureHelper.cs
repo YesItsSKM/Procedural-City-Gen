@@ -201,7 +201,7 @@ namespace SVS
 
 
 		}
-		/*	public void Reset()
+			public void Reset()
 			{
 				foreach (var item in structuresDictionary.Values)
 				{
@@ -219,7 +219,7 @@ namespace SVS
 				}
 
 			}
-		}*/
+		}
 	}
-}
+
 
