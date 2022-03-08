@@ -1,4 +1,4 @@
-# Coursework-2
+# Procedural City Generator (using L-Systems)
 Maths group assignment repo for Coursework-2
 
 We have used Unity Engine to generate the buildings, roads, and treeswhich is capable of handling the 3D procedural model with help of LSystem model.  The basic models likes cities, roads and tress modelsare in their default orientation, whenever any object is instantiated inthe scene, checks with the neighbour objects and sync to them. For in-stance: roads are different because there are intersections, dead ends and3 way roads. Everything is calculated and verified with their neighboursmodels which generated through L System model.
